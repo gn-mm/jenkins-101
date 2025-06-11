@@ -25,6 +25,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 echo "Testing..."
+                source .venv/bin/activate
                 cd myapp
                 python3 hello.py
                 python3 hello.py --name=Jenkins
