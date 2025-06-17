@@ -13,8 +13,8 @@ pipeline {
                 echo "Building.."
                 sh '''
                 echo "Installing python libraries..."
-                python3 -m venv .venv
-                source .venv/bin/activate
+                python -m venv .venv
+                .\.venv\Scripts\activate
                 cd myapp
                 pip install -r requirements.txt
                 '''
@@ -25,10 +25,10 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 echo "Testing..."
-                source .venv/bin/activate
+                .\.venv\Scripts\activate
                 cd myapp
-                python3 hello.py
-                python3 hello.py --name=Jenkins
+                python hello.py
+                python hello.py --name=Jenkins
                 '''
             }
         }
