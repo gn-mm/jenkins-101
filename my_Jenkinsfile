@@ -11,32 +11,35 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
-                sh '''
-                echo "Installing python libraries..."
-                python -m venv .venv
-                .\.venv\Scripts\activate
-                cd myapp
-                pip install -r requirements.txt
+                bat '''
+                    @echo off
+                    echo "Installing python libraries..."
+                    python -m venv .venv
+                    call .\\.venv\\Scripts\\activate
+                    cd myapp
+                    pip install -r requirements.txt
                 '''
             }
         }
         stage('Test') {
             steps {
                 echo "Testing.."
-                sh '''
-                echo "Testing..."
-                .\.venv\Scripts\activate
-                cd myapp
-                python hello.py
-                python hello.py --name=Jenkins
+                bat '''
+                    @echo off
+                    echo "Testing..."
+                    call .\\.venv\\Scripts\\activate
+                    cd myapp
+                    python hello.py
+                    python hello.py --name=Jenkins
                 '''
             }
         }
         stage('Deliver') {
             steps {
                 echo 'Deliver..'
-                sh '''
-                echo "doing delivery stuff.."
+                bat '''
+                    @echo off
+                    echo "doing delivery stuff.."
                 '''
             }
         }
